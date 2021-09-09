@@ -5,8 +5,13 @@ const db = new Sequelize('test', 'root', '2525',
     { host: 'localhost', dialect: 'mysql' });
 
 const Student = db.define('Student', {
-    name: DataTypes.STRING(40),
-    age: DataTypes.INTEGER(2)
+    name: { type: DataTypes.STRING(40), allowNull: false },
+    age: { type: DataTypes.INTEGER(2), defaultValue: -1, allowNull: false }
 });
 
-db.sync().then(data => { console.log('table created'); }).catch(err => { console.log(err); });
+
+
+
+// db.sync({ alter: true }).then(data => { console.log('table created'); }).catch(err => { console.log(err); });
+
+module.exports = { Student, db };
